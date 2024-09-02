@@ -10,7 +10,6 @@
 		9DC0F4BB2C8599F700334822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BA2C8599F700334822 /* AppDelegate.swift */; };
 		9DC0F4BD2C8599F700334822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */; };
 		9DC0F4BF2C8599F700334822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BE2C8599F700334822 /* ViewController.swift */; };
-		9DC0F4C22C8599F700334822 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C12C8599F700334822 /* Base */; };
 		9DC0F4C52C8599F700334822 /* TravelTourGuide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C32C8599F700334822 /* TravelTourGuide.xcdatamodeld */; };
 		9DC0F4C72C8599F800334822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C62C8599F800334822 /* Assets.xcassets */; };
 		9DC0F4CA2C8599F800334822 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C92C8599F800334822 /* Base */; };
@@ -41,7 +40,6 @@
 		9DC0F4BA2C8599F700334822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9DC0F4BE2C8599F700334822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9DC0F4C12C8599F700334822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9DC0F4C42C8599F700334822 /* TravelTourGuide.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelTourGuide.xcdatamodel; sourceTree = "<group>"; };
 		9DC0F4C62C8599F800334822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DC0F4C92C8599F800334822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				9DC0F4BA2C8599F700334822 /* AppDelegate.swift */,
 				9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */,
 				9DC0F4BE2C8599F700334822 /* ViewController.swift */,
-				9DC0F4C02C8599F700334822 /* Main.storyboard */,
 				9DC0F4C62C8599F800334822 /* Assets.xcassets */,
 				9DC0F4C82C8599F800334822 /* LaunchScreen.storyboard */,
 				9DC0F4CB2C8599F800334822 /* Info.plist */,
@@ -236,7 +233,6 @@
 			files = (
 				9DC0F4C72C8599F800334822 /* Assets.xcassets in Resources */,
 				9DC0F4CA2C8599F800334822 /* Base in Resources */,
-				9DC0F4C22C8599F700334822 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +297,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9DC0F4C02C8599F700334822 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9DC0F4C12C8599F700334822 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9DC0F4C82C8599F800334822 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,18 +430,19 @@
 		9DC0F4E52C8599F900334822 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TravelIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9NXT375QP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelTourGuide/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TravelTripTour;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,27 +450,32 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jungguen.TravelTourGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		9DC0F4E62C8599F900334822 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TravelIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9NXT375QP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelTourGuide/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TravelTripTour;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,9 +483,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jungguen.TravelTourGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
