@@ -9,13 +9,18 @@
 /* Begin PBXBuildFile section */
 		9DC0F4BB2C8599F700334822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BA2C8599F700334822 /* AppDelegate.swift */; };
 		9DC0F4BD2C8599F700334822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */; };
-		9DC0F4BF2C8599F700334822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BE2C8599F700334822 /* ViewController.swift */; };
+		9DC0F4BF2C8599F700334822 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BE2C8599F700334822 /* MainTabBarViewController.swift */; };
 		9DC0F4C52C8599F700334822 /* TravelTourGuide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C32C8599F700334822 /* TravelTourGuide.xcdatamodeld */; };
 		9DC0F4C72C8599F800334822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C62C8599F800334822 /* Assets.xcassets */; };
 		9DC0F4CA2C8599F800334822 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9DC0F4C92C8599F800334822 /* Base */; };
 		9DC0F4D52C8599F900334822 /* TravelTourGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4D42C8599F900334822 /* TravelTourGuideTests.swift */; };
 		9DC0F4DF2C8599F900334822 /* TravelTourGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4DE2C8599F900334822 /* TravelTourGuideUITests.swift */; };
 		9DC0F4E12C8599F900334822 /* TravelTourGuideUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4E02C8599F900334822 /* TravelTourGuideUITestsLaunchTests.swift */; };
+		9DC0F4F02C85AB9E00334822 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4EF2C85AB9E00334822 /* MainTabBarView.swift */; };
+		9DC0F4F32C85AD2000334822 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4F22C85AD2000334822 /* HomeViewController.swift */; };
+		9DC0F4F52C85AD2900334822 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4F42C85AD2900334822 /* SearchViewController.swift */; };
+		9DC0F4F72C85AD3100334822 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4F62C85AD3100334822 /* PlanViewController.swift */; };
+		9DC0F4F92C85AD3D00334822 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4F82C85AD3D00334822 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +44,7 @@
 		9DC0F4B72C8599F700334822 /* TravelTourGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelTourGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC0F4BA2C8599F700334822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9DC0F4BE2C8599F700334822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9DC0F4BE2C8599F700334822 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		9DC0F4C42C8599F700334822 /* TravelTourGuide.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelTourGuide.xcdatamodel; sourceTree = "<group>"; };
 		9DC0F4C62C8599F800334822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DC0F4C92C8599F800334822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,11 @@
 		9DC0F4DA2C8599F900334822 /* TravelTourGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelTourGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC0F4DE2C8599F900334822 /* TravelTourGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTourGuideUITests.swift; sourceTree = "<group>"; };
 		9DC0F4E02C8599F900334822 /* TravelTourGuideUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTourGuideUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9DC0F4EF2C85AB9E00334822 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
+		9DC0F4F22C85AD2000334822 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9DC0F4F42C85AD2900334822 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		9DC0F4F62C85AD3100334822 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		9DC0F4F82C85AD3D00334822 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +109,10 @@
 		9DC0F4B92C8599F700334822 /* TravelTourGuide */ = {
 			isa = PBXGroup;
 			children = (
+				9DC0F4EE2C85A5E200334822 /* Views */,
+				9DC0F4ED2C85A5C200334822 /* Controllers */,
 				9DC0F4BA2C8599F700334822 /* AppDelegate.swift */,
 				9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */,
-				9DC0F4BE2C8599F700334822 /* ViewController.swift */,
 				9DC0F4C62C8599F800334822 /* Assets.xcassets */,
 				9DC0F4C82C8599F800334822 /* LaunchScreen.storyboard */,
 				9DC0F4CB2C8599F800334822 /* Info.plist */,
@@ -125,6 +136,42 @@
 				9DC0F4E02C8599F900334822 /* TravelTourGuideUITestsLaunchTests.swift */,
 			);
 			path = TravelTourGuideUITests;
+			sourceTree = "<group>";
+		};
+		9DC0F4ED2C85A5C200334822 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F4FA2C85AD4300334822 /* General */,
+				9DC0F4F12C85AC3F00334822 /* Core */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9DC0F4EE2C85A5E200334822 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F4EF2C85AB9E00334822 /* MainTabBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9DC0F4F12C85AC3F00334822 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F4F22C85AD2000334822 /* HomeViewController.swift */,
+				9DC0F4F42C85AD2900334822 /* SearchViewController.swift */,
+				9DC0F4F62C85AD3100334822 /* PlanViewController.swift */,
+				9DC0F4F82C85AD3D00334822 /* ProfileViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		9DC0F4FA2C85AD4300334822 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F4BE2C8599F700334822 /* MainTabBarViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,10 +304,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DC0F4BF2C8599F700334822 /* ViewController.swift in Sources */,
+				9DC0F4F02C85AB9E00334822 /* MainTabBarView.swift in Sources */,
+				9DC0F4F52C85AD2900334822 /* SearchViewController.swift in Sources */,
+				9DC0F4BF2C8599F700334822 /* MainTabBarViewController.swift in Sources */,
 				9DC0F4BB2C8599F700334822 /* AppDelegate.swift in Sources */,
 				9DC0F4C52C8599F700334822 /* TravelTourGuide.xcdatamodeld in Sources */,
+				9DC0F4F72C85AD3100334822 /* PlanViewController.swift in Sources */,
+				9DC0F4F92C85AD3D00334822 /* ProfileViewController.swift in Sources */,
 				9DC0F4BD2C8599F700334822 /* SceneDelegate.swift in Sources */,
+				9DC0F4F32C85AD2000334822 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
