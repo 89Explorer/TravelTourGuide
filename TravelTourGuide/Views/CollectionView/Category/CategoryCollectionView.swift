@@ -13,8 +13,6 @@ class CategoryCollectionView: UIView {
     private let categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        // layout.minimumLineSpacing = 10
-        //layout.minimumInteritemSpacing = 10 // 셀 간 간격 설정
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false

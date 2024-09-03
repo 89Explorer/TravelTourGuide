@@ -21,6 +21,12 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    private let mainTableView: MainTableView = {
+        let tableView = MainTableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -29,23 +35,34 @@ class HomeViewController: UIViewController {
         configureNavbar()
         
         view.addSubview(categoryCollectionView)
+        view.addSubview(mainTableView)
         
         categoryCollectionViewDeleagte()
+        mainTableViewDelegate()
         
         configureConstraints()
+        getCommonData()
     }
     
     
     // MARK: - Layouts
     private func configureConstraints() {
         let categoryCollectionViewCosntraints = [
-            categoryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            categoryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            categoryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            categoryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             categoryCollectionView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 0),
             categoryCollectionView.heightAnchor.constraint(equalToConstant: 100)
         ]
         
+        let mainTableViewConstraints = [
+            mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            mainTableView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor, constant: 10),
+            mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75)
+        ]
+        
         NSLayoutConstraint.activate(categoryCollectionViewCosntraints)
+        NSLayoutConstraint.activate(mainTableViewConstraints)
     }
     
     
@@ -57,8 +74,11 @@ class HomeViewController: UIViewController {
         categoryCollectionView.getcategoryCollectionView().register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
     }
     
-    
-    
+    private func mainTableViewDelegate() {
+        mainTableView.getMainTable().delegate = self
+        mainTableView.getMainTable().dataSource = self
+        mainTableView.getMainTable().register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
+    }
     
     private func configureNavbar() {
         
@@ -87,6 +107,12 @@ class HomeViewController: UIViewController {
     
     @objc private func leftBarButtonTapped() {
         print("leftBarButtonTapped() - Called")
+    }
+    
+    private func getCommonData() {
+        NetworkManager.shared.getCommonData { _ in
+            //
+        }
     }
 }
 
@@ -127,5 +153,29 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+}
+
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 356
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailVC = DetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
