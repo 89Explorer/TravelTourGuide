@@ -7,11 +7,27 @@
 
 import UIKit
 
+// MARK: - Enum
+enum ContentCategory: String {
+    case attractions = "12"
+    case facilities = "14"
+    case accommodation = "32"
+    case restaurant = "38"
+    
+    var contentId: String {
+        return self.rawValue
+    }
+}
+
+
+// MARK: - Class
 class HomeViewController: UIViewController {
     
     // MARK: - Variables
     private let categoryTitle: [String] = ["관광지", "문화시설", "숙박", "음식"]
     private let categoryImage: [String] = ["attractions", "newcenter", "sleep", "newTaste"]
+    private var selectedIndex: Int = 0 // 선택된 버튼의 인덱스
+    private var items: [Item] = []
     
     
     // MARK: - UI Components
@@ -41,7 +57,7 @@ class HomeViewController: UIViewController {
         mainTableViewDelegate()
         
         configureConstraints()
-        getCommonData()
+        getRandomPageData(contentId: "12")
     }
     
     
@@ -109,9 +125,29 @@ class HomeViewController: UIViewController {
         print("leftBarButtonTapped() - Called")
     }
     
-    private func getCommonData() {
-        NetworkManager.shared.getCommonData { _ in
-            //
+    private func getRandomPageData(contentId: String) {
+        NetworkManager.shared.fetchRandomPageData(contentId: contentId) { [weak self] results in
+            switch results {
+            case .success(let items):
+                // firstImage가 nil이 아니고, 빈 문자열이 아닌 모든 요소 확인
+                let validItems = items.filter {
+                    if let firstImage = $0.firstimage {
+                        return !firstImage.isEmpty
+                    }
+                    return false
+                }
+                DispatchQueue.main.async {
+                    self?.items = validItems
+                    self?.mainTableView.getMainTable().reloadData()
+                    
+                    // 데이터를 다시 로드한 후 첫 번째 행으로 스크롤
+                    if !items.isEmpty {
+                        self?.mainTableView.getMainTable().scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }
@@ -134,7 +170,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell - Tapped() \(indexPath.row)")
+        selectedIndex = indexPath.item
+        
+        var selectedCategory: ContentCategory?
+        switch selectedIndex{
+        case 0:
+            selectedCategory = .attractions
+        case 1:
+            selectedCategory = .facilities
+        case 2:
+            selectedCategory = .accommodation
+        case 3:
+            selectedCategory = .restaurant
+        default:
+            break
+        }
+        
+        if let category = selectedCategory {
+            getRandomPageData(contentId: category.contentId)
+        }
     }
     
     // UICollectionViewDelegateFlowLayout
@@ -159,12 +213,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
+        let model = items[indexPath.row]
+        cell.configureMainTableViewCellData(with: model)
         cell.selectionStyle = .none
         return cell
     }

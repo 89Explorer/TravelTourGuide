@@ -10,28 +10,79 @@ import Foundation
 
 // MARK: - Constants
 struct Constants {
-    static let api_key = ""
-    static let base_URL = ""
+    static let api_key = "jlK%2B0ig7iLAbdOuTJsnkp6n0RdeEMtGKsw53jEMbKm3PcB7NFTSeUrnXixogiuvNtHQXeqxgV88buRZvTjG73w%3D%3D"
+    static let base_URL = "https://apis.data.go.kr/B551011/KorService1"
 }
 
 
-// MARK: - Network Manager
+
+// MARK: - NetworkManager 수정
 class NetworkManager {
     static let shared = NetworkManager()
     
-    func getCommonData(completion: @escaping (String) -> Void) {
-        guard let url = URL(string: "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?serviceKey=jlK%2B0ig7iLAbdOuTJsnkp6n0RdeEMtGKsw53jEMbKm3PcB7NFTSeUrnXixogiuvNtHQXeqxgV88buRZvTjG73w%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=O&contentTypeId=12") else { return }
+    func getCommonData(contentId: String, pageNo: String = "1", completion: @escaping (Result<AttractionResponse, Error>) -> Void) {
+        var components = URLComponents(string: "\(Constants.base_URL)/areaBasedList1")
+        
+        // 쿼리 아이템 설정
+        components?.queryItems = [
+            URLQueryItem(name: "serviceKey", value: Constants.api_key),
+            URLQueryItem(name: "numOfRows", value: "10"),
+            URLQueryItem(name: "pageNo", value: pageNo),
+            URLQueryItem(name: "MobileOS", value: "ETC"),
+            URLQueryItem(name: "MobileApp", value: "AppTest"),
+            URLQueryItem(name: "_type", value: "json"),
+            URLQueryItem(name: "listYN", value: "Y"),
+            URLQueryItem(name: "arrange", value: "O"),
+            URLQueryItem(name: "contentTypeId", value: contentId)
+        ]
+        
+        // 퍼센트 인코딩 후 "+"를 "%2B"로 대체
+        if let encodedQuery = components?.percentEncodedQuery?.replacingOccurrences(of: "%25", with: "%") {
+            components?.percentEncodedQuery = encodedQuery
+        }
+        
+        // URL 생성
+        guard let url = components?.url else { return }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else { return }
             
             do {
-                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(results)
+                let results = try JSONDecoder().decode(AttractionResponse.self, from: data)
+                completion(.success(results))
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
         task.resume()
+    }
+    
+    // 받아온 데이터에서 전체 페이지 수를 구한 다음, 페이지를 랜덤으로 선정하여 데이터를 가져오는 함수
+    func fetchRandomPageData(contentId: String, completion: @escaping (Result<[Item], Error>) -> Void) {
+        // 1페이지 데이터를 먼저 가져와 전체 페이지 수를 계산
+        getCommonData(contentId: contentId, pageNo: "1") { result in
+            switch result {
+            case .success(let response):
+                let totalCount = response.response.body.totalCount
+                let numOfRows = response.response.body.numOfRows
+                let totalPages = (totalCount + numOfRows - 1) / numOfRows
+                
+                // 전체 페이지 수 내에서 무작위로 페이지 선택
+                let randomPage = Int.random(in: 1...totalPages)
+                
+                // 선택된 페이지 데이터 가져오기
+                self.getCommonData(contentId: contentId, pageNo: "\(randomPage)") { result in
+                    switch result {
+                    case .success(let response):
+                        completion(.success(response.response.body.items.item))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

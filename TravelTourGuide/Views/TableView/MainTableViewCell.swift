@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainTableViewCell: UITableViewCell {
     
@@ -263,5 +264,32 @@ class MainTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(addressImageConstraints)
         NSLayoutConstraint.activate(phoneImageConstraints)
         NSLayoutConstraint.activate(restImageConstraints)
+    }
+    
+    // MARK: - Functions
+    func configureMainTableViewCellData(with model: Item) {
+        
+        guard let posterPath = model.firstimage,
+              var address = model.addr1,
+              var title = model.title,
+              var tel = model.tel
+        else { return }
+
+        address = (address.count != 0) ? address : "-"
+        title = (title.count != 0) ? title : "-"
+        tel = (tel.count != 0) ? tel : "-"
+        
+        let securePosterURL = posterPath.replacingOccurrences(of: "http://", with: "https://")
+        
+        if let url = URL(string: securePosterURL){
+            mainImageView.sd_setImage(with: url)
+        } else {
+            mainImageView.image = UIImage(systemName: "house")
+        }
+        
+        let modifiedTitle = title.removingParentheses()
+        maintitleLabel.text = modifiedTitle
+        addressLabel.text = address
+        phoneLabel.text = tel
     }
 }
