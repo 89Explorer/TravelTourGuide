@@ -14,7 +14,7 @@ enum ContentCategory: String {
     case accommodation = "32"
     case restaurant = "38"
     
-    var contentId: String {
+    var contentTypeId: String {
         return self.rawValue
     }
 }
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
         mainTableViewDelegate()
         
         configureConstraints()
-        getRandomPageData(contentId: "12")
+        getRandomPageData(contentTypeId: "12")
     }
     
     
@@ -125,8 +125,8 @@ class HomeViewController: UIViewController {
         print("leftBarButtonTapped() - Called")
     }
     
-    private func getRandomPageData(contentId: String) {
-        NetworkManager.shared.fetchRandomPageData(contentId: contentId) { [weak self] results in
+    private func getRandomPageData(contentTypeId: String) {
+        NetworkManager.shared.fetchRandomPageData(contentTypeId: contentTypeId) { [weak self] results in
             switch results {
             case .success(let items):
                 // firstImage가 nil이 아니고, 빈 문자열이 아닌 모든 요소 확인
@@ -141,7 +141,7 @@ class HomeViewController: UIViewController {
                     self?.mainTableView.getMainTable().reloadData()
                     
                     // 데이터를 다시 로드한 후 첫 번째 행으로 스크롤
-                    if !items.isEmpty {
+                    if !validItems.isEmpty {
                         self?.mainTableView.getMainTable().scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                     }
                 }
@@ -187,7 +187,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         if let category = selectedCategory {
-            getRandomPageData(contentId: category.contentId)
+            getRandomPageData(contentTypeId: category.contentTypeId)
         }
     }
     
@@ -226,12 +226,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 356
+        return 320
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let selectedItem = items[indexPath.row]
+
         let detailVC = DetailViewController()
+        detailVC.contentTypeId = selectedItem.contenttypeid
+        detailVC.contentId = selectedItem.contentid
+        
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

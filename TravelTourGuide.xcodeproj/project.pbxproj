@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D2A731A2C89579C00E34DEE /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A73192C89579C00E34DEE /* ImageResponse.swift */; };
 		9DC0F4BB2C8599F700334822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BA2C8599F700334822 /* AppDelegate.swift */; };
 		9DC0F4BD2C8599F700334822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */; };
 		9DC0F4BF2C8599F700334822 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F4BE2C8599F700334822 /* MainTabBarViewController.swift */; };
@@ -32,6 +33,8 @@
 		9DC0F5152C87678700334822 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 9DC0F5142C87678700334822 /* SDWebImage */; };
 		9DC0F5172C87678700334822 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DC0F5162C87678700334822 /* SDWebImageMapKit */; };
 		9DC0F51A2C87E9EA00334822 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F5192C87E9EA00334822 /* Extension.swift */; };
+		9DC0F51F2C88574300334822 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F51E2C88574300334822 /* DetailHeaderView.swift */; };
+		9DC0F5232C88F6C000334822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC0F5222C88F6C000334822 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D2A73192C89579C00E34DEE /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		9DC0F4B72C8599F700334822 /* TravelTourGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelTourGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC0F4BA2C8599F700334822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DC0F4BC2C8599F700334822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		9DC0F50F2C8761AF00334822 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9DC0F5112C8766F800334822 /* AttractionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionResponse.swift; sourceTree = "<group>"; };
 		9DC0F5192C87E9EA00334822 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		9DC0F51E2C88574300334822 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
+		9DC0F5222C88F6C000334822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,7 @@
 		9DC0F4ED2C85A5C200334822 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9DC0F5202C88F6A500334822 /* ETC */,
 				9DC0F4FA2C85AD4300334822 /* General */,
 				9DC0F4F12C85AC3F00334822 /* Core */,
 			);
@@ -175,10 +182,9 @@
 		9DC0F4EE2C85A5E200334822 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9DC0F5052C86BDB300334822 /* TableView */,
-				9DC0F4FD2C862CF600334822 /* CollectionView */,
-				9DC0F4FC2C861FC200334822 /* HeaderView */,
 				9DC0F4FB2C861F5600334822 /* TabBarView */,
+				9DC0F51C2C8856FF00334822 /* HomeView */,
+				9DC0F51B2C8856F300334822 /* DetailView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				9DC0F5112C8766F800334822 /* AttractionResponse.swift */,
+				9D2A73192C89579C00E34DEE /* ImageResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,6 +274,40 @@
 				9DC0F5192C87E9EA00334822 /* Extension.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		9DC0F51B2C8856F300334822 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F51D2C88573000334822 /* HeaderView */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		9DC0F51C2C8856FF00334822 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F4FC2C861FC200334822 /* HeaderView */,
+				9DC0F4FD2C862CF600334822 /* CollectionView */,
+				9DC0F5052C86BDB300334822 /* TableView */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		9DC0F51D2C88573000334822 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F51E2C88574300334822 /* DetailHeaderView.swift */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		9DC0F5202C88F6A500334822 /* ETC */ = {
+			isa = PBXGroup;
+			children = (
+				9DC0F5222C88F6C000334822 /* ViewController.swift */,
+			);
+			path = ETC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +449,7 @@
 			files = (
 				9DC0F5072C86BE0D00334822 /* MainTableView.swift in Sources */,
 				9DC0F5002C862D1D00334822 /* CategoryCollectionView.swift in Sources */,
+				9D2A731A2C89579C00E34DEE /* ImageResponse.swift in Sources */,
 				9DC0F4F02C85AB9E00334822 /* MainTabBarView.swift in Sources */,
 				9DC0F4F52C85AD2900334822 /* SearchViewController.swift in Sources */,
 				9DC0F5102C8761B000334822 /* NetworkManager.swift in Sources */,
@@ -415,9 +457,11 @@
 				9DC0F5042C86310F00334822 /* CategoryCollectionViewCell.swift in Sources */,
 				9DC0F4BB2C8599F700334822 /* AppDelegate.swift in Sources */,
 				9DC0F4C52C8599F700334822 /* TravelTourGuide.xcdatamodeld in Sources */,
+				9DC0F51F2C88574300334822 /* DetailHeaderView.swift in Sources */,
 				9DC0F51A2C87E9EA00334822 /* Extension.swift in Sources */,
 				9DC0F4F72C85AD3100334822 /* PlanViewController.swift in Sources */,
 				9DC0F5122C8766F800334822 /* AttractionResponse.swift in Sources */,
+				9DC0F5232C88F6C000334822 /* ViewController.swift in Sources */,
 				9DC0F4F92C85AD3D00334822 /* ProfileViewController.swift in Sources */,
 				9DC0F5092C86C95000334822 /* MainTableViewCell.swift in Sources */,
 				9DC0F4BD2C8599F700334822 /* SceneDelegate.swift in Sources */,
