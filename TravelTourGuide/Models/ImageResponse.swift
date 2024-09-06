@@ -4,6 +4,8 @@
 //
 //  Created by 권정근 on 9/5/24.
 //
+
+
 import Foundation
 
 // 최상위 응답 구조체
@@ -60,6 +62,13 @@ extension ImageResponse {
     }
 }
 
+extension ImageHeader {
+    enum CodingKeys: String, CodingKey {
+        case resultCode
+        case resultMsg
+    }
+}
+
 extension ImageBody {
     enum CodingKeys: String, CodingKey {
         case items
@@ -75,9 +84,4 @@ extension ImageItems {
     }
 }
 
-extension ImageHeader {
-    enum CodingKeys: String, CodingKey {
-        case resultCode
-        case resultMsg
-    }
-}
+

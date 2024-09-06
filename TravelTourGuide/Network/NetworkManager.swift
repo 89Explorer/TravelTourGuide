@@ -127,4 +127,42 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    
+    // 상세 소개 정보를 가져오는 함수
+    func getIntroInfoData(contentId: String, contentTypeId: String, completion: @escaping (Result<AttractionIntroInfoItems, Error>) -> Void) {
+        var components = URLComponents(string: "\(Constants.base_URL)/detailIntro1?")
+        
+        components?.queryItems = [
+            URLQueryItem(name: "serviceKey", value: Constants.api_key),
+            URLQueryItem(name: "MobileOS", value: "ETC"),
+            URLQueryItem(name: "MobileApp", value: "AppTest"),
+            URLQueryItem(name: "_type", value: "json"),
+            URLQueryItem(name: "contentId", value: contentId),
+            URLQueryItem(name: "contentTypeId", value: contentTypeId),
+            URLQueryItem(name: "numOfRows", value: "10"),
+            URLQueryItem(name: "pageNo", value: "1")
+        ]
+        
+        if let encodedQuery = components?.percentEncodedQuery?.replacingOccurrences(of: "%25", with: "%") {
+            components?.percentEncodedQuery = encodedQuery
+        }
+        
+        guard let url = components?.url else { return }
+
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                // AttractionResponse로 JSON 디코딩
+                let results = try JSONDecoder().decode(AttractionIntroInfoResponseResponse.self, from: data)
+                
+                // completion handler로 결과 반환
+                completion(.success(results.response.body.items))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
 }

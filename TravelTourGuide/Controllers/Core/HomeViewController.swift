@@ -234,8 +234,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let selectedItem = items[indexPath.row]
 
         let detailVC = DetailViewController()
-        detailVC.contentTypeId = selectedItem.contenttypeid
-        detailVC.contentId = selectedItem.contentid
+        
+        detailVC.model = selectedItem
+//        detailVC.contentTypeId = selectedItem.contenttypeid
+//        detailVC.contentId = selectedItem.contentid
         
         navigationController?.pushViewController(detailVC, animated: true)
     }

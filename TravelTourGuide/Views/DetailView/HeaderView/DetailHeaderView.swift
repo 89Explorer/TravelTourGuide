@@ -9,15 +9,24 @@ import UIKit
 
 class DetailHeaderView: UIView {
     
+    
     // MARK: - UI Components
     private let detailImageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
+        // 셀 크기 설정: 컬렉션 뷰의 크기에 맞추어 설정
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemRed
+        collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true // 페이지 단위로 스크롤하게 설정
+        // collectionView.alwaysBounceHorizontal = true
         return collectionView
     }()
     
@@ -25,18 +34,7 @@ class DetailHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "전주 한옥 마을"
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        label.textColor = .black
-        return label
-    }()
-    
-    private let detailAddressLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "인천특별시 강화군 하곡동 220-2번지"
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .systemFont(ofSize: 22, weight: .black)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.textColor = .black
@@ -49,7 +47,6 @@ class DetailHeaderView: UIView {
         super.init(frame: frame)
         addSubview(detailImageCollectionView)
         addSubview(detailTitleLabel)
-        addSubview(detailAddressLabel)
         
         configureContraints()
     }
@@ -72,24 +69,22 @@ class DetailHeaderView: UIView {
         let detailTitleLabelConstraints = [
             detailTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             detailTitleLabel.topAnchor.constraint(equalTo: detailImageCollectionView.bottomAnchor, constant: 15),
-            detailTitleLabel.heightAnchor.constraint(equalToConstant: 20)
-        ]
-        
-        let detailAddressLabelConstraints = [
-            detailAddressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            detailAddressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            detailAddressLabel.topAnchor.constraint(equalTo: detailTitleLabel.bottomAnchor, constant: 0),
-            detailAddressLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+            detailTitleLabel.heightAnchor.constraint(equalToConstant: 24)
         ]
         
         NSLayoutConstraint.activate(detailImageCollectionViewConstraints)
         NSLayoutConstraint.activate(detailTitleLabelConstraints)
-        NSLayoutConstraint.activate(detailAddressLabelConstraints)
     }
     
     
     // MARK: - Functions
     func configureDetailCollectionView() -> UICollectionView {
         return detailImageCollectionView
+    }
+    
+    func configureTitleLabel(title: String) {
+        
+        let modifiedTitle = title.removingParentheses()
+        detailTitleLabel.text = modifiedTitle
     }
 }
