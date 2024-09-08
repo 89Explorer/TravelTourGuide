@@ -25,14 +25,15 @@ class MainTabBarView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.layer.cornerRadius = 5
+        stackView.layer.cornerRadius = 30
         stackView.clipsToBounds = true
         stackView.backgroundColor = .systemGray
         return stackView
     }()
     
-    // stackView에 담을 버튼들
-    private lazy var homeButton = createButton(imageName: "house.fill", tag: 0)
+    // stackView에 담을 버튼들 globe.americas
+    // private lazy var homeButton = createButton(imageName: "house.fill", tag: 0)
+    private lazy var homeButton = createButton(imageName: "globe.americas.fill", tag: 0)
     private lazy var searchButton = createButton(imageName: "magnifyingglass", tag: 1)
     private lazy var planButton = createButton(imageName: "calendar", tag: 2)
     private lazy var profileButton = createButton(imageName: "person.fill", tag: 3)
@@ -85,7 +86,7 @@ class MainTabBarView: UIView {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .medium)
         config.imagePadding = 0 // 이미지와 텍스트 사이의 간격
         config.imagePlacement = .top // 이미지를 텍스트 위에 배치
-        config.contentInsets = NSDirectionalEdgeInsets(top: -20, leading: 0, bottom: 0, trailing: 0) // 전체적인 내용 인셋을 조정
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0) // 전체적인 내용 인셋을 조정
         
         // 구성 설정 적용
         button.configuration = config

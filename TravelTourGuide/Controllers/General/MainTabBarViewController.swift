@@ -37,12 +37,13 @@ class MainTabBarViewController: UITabBarController {
     
     // MARK: - Functions
     private func setViewControllers() {
-        let homeVC = UINavigationController(rootViewController: HomeViewController())
+//        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        let exploreVC = UINavigationController(rootViewController: ExploreViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
         let planVC = UINavigationController(rootViewController: PlanViewController())
         let profileVC = UINavigationController(rootViewController: ProfileViewController())
         
-        viewControllers = [homeVC, searchVC, planVC, profileVC]
+        viewControllers = [exploreVC, searchVC, planVC, profileVC]
     }
     
     
@@ -50,10 +51,10 @@ class MainTabBarViewController: UITabBarController {
     private func configureConstraints() {
         
         let mainTabBarViewConstraints = [
-            mainTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainTabBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mainTabBarView.heightAnchor.constraint(equalToConstant: 65)
+            mainTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mainTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            mainTabBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25),
+            mainTabBarView.heightAnchor.constraint(equalToConstant: 60)
         ]
         
         NSLayoutConstraint.activate(mainTabBarViewConstraints)

@@ -1,13 +1,13 @@
 //
-//  CategoryTitleView.swift
+//  HeaderView.swift
 //  TravelTourGuide
 //
-//  Created by 권정근 on 9/3/24.
+//  Created by 권정근 on 9/8/24.
 //
 
 import UIKit
 
-class CategoryTitleView: UIView {
+class HeaderView: UIView {
     
     // MARK: - UI Components
     
@@ -20,4 +20,6 @@ class CategoryTitleView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }

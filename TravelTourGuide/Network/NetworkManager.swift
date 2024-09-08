@@ -165,4 +165,52 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    // 지역 기반 리스트 데이터를 가져오는 함수
+    func getAreaBasedList(completion: @escaping (Result<AttractionResponse, Error>) -> Void) {
+        var components = URLComponents(string: "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?")
+        
+        components?.queryItems = [
+            URLQueryItem(name: "numOfRows", value: "12"),
+            URLQueryItem(name: "pageNo", value: "1"),
+            URLQueryItem(name: "MobileOS", value: "ETC"),
+            URLQueryItem(name: "MobileApp", value: "AppTest"),
+            URLQueryItem(name: "ServiceKey", value: "jlK%2B0ig7iLAbdOuTJsnkp6n0RdeEMtGKsw53jEMbKm3PcB7NFTSeUrnXixogiuvNtHQXeqxgV88buRZvTjG73w%3D%3D"),
+            URLQueryItem(name: "listYN", value: "Y"),
+            URLQueryItem(name: "arrange", value: "O"),
+            URLQueryItem(name: "contentTypeId", value: "12"),
+            URLQueryItem(name: "areaCode", value: ""),
+            URLQueryItem(name: "sigunguCode", value: ""),
+            URLQueryItem(name: "cat1", value: "A01"),
+            URLQueryItem(name: "cat2", value: "A0101"),
+            URLQueryItem(name: "cat3", value: "A01010100"),
+            URLQueryItem(name: "_type", value: "json")
+        ]
+        
+        if let encodedQuery = components?.percentEncodedQuery?.replacingOccurrences(of: "%25", with: "%") {
+            components?.percentEncodedQuery = encodedQuery
+        }
+        
+        // URL 생성 및 요청
+        guard let url = components?.url else { return }
+        
+        print(url)
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else {
+                completion(.failure(error ?? URLError(.badServerResponse)))
+                return
+            }
+            
+            do {
+                // JSON 디코딩
+                let results = try JSONDecoder().decode(AttractionResponse.self, from: data)
+                // 성공 시 결과 반환
+                print(results)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
 }

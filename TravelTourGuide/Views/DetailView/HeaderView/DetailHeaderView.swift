@@ -17,6 +17,7 @@ class DetailHeaderView: UIView {
         
         // 셀 크기 설정: 컬렉션 뷰의 크기에 맞추어 설정
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
+        // layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
@@ -24,6 +25,8 @@ class DetailHeaderView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
+        collectionView.layer.cornerRadius = 10
+        collectionView.clipsToBounds = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true // 페이지 단위로 스크롤하게 설정
         // collectionView.alwaysBounceHorizontal = true

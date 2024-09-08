@@ -48,6 +48,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "여기 가봤어?"
+        navigationController?.navigationBar.prefersLargeTitles = true
         configureNavbar()
         
         view.addSubview(categoryCollectionView)
@@ -58,6 +60,10 @@ class HomeViewController: UIViewController {
         
         configureConstraints()
         getRandomPageData(contentTypeId: "12")
+        
+        NetworkManager.shared.getAreaBasedList { _ in
+            
+        }
     }
     
     
@@ -97,28 +103,54 @@ class HomeViewController: UIViewController {
     }
     
     private func configureNavbar() {
-        
         let originalImage = UIImage(named: "trip-logo")
         let scaledSize = CGSize(width: 45, height: 45) // 시스템 버튼과 비슷한 크기
-        
+
         UIGraphicsBeginImageContextWithOptions(scaledSize, false, 0.0)
         originalImage?.draw(in: CGRect(origin: .zero, size: scaledSize))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         // 원본 이미지 색상을 유지하기 위해 렌더링 모드를 .alwaysOriginal로 설정
         let originalColorImage = scaledImage?.withRenderingMode(.alwaysOriginal)
-        
+
         let barButton = UIBarButtonItem(image: originalColorImage, style: .plain, target: self, action: #selector(leftBarButtonTapped))
         navigationItem.leftBarButtonItem = barButton
-        
-        
+
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
         ]
-        
+
         navigationController?.navigationBar.tintColor = .label
+
+        // `UINavigationBarAppearance` 객체 생성
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()  // 투명하지 않은 배경 설정
+
+        // 커스텀 폰트 로드 시 오류 방지
+        let customFont = UIFont(name: "Hakgyoansim Chulseokbu TTF B", size: 24) ?? UIFont.systemFont(ofSize: 10, weight: .bold)
+        let largeCustomFont = UIFont(name: "Hakgyoansim Chulseokbu TTF B", size: 34) ?? UIFont.systemFont(ofSize: 14, weight: .bold)
+
+        // 타이틀 텍스트 속성 설정
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,    // 텍스트 색상
+            .font: customFont
+        ]
+
+        // largeTitle 텍스트 속성 설정 (큰 타이틀)
+        appearance.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.black,    // 텍스트 색상
+            .font: largeCustomFont
+        ]
+
+        // 네비게이션 바에 적용
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+        // Large titles 사용하려면 이 옵션 추가
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
+
     
     
     @objc private func leftBarButtonTapped() {
@@ -232,13 +264,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedItem = items[indexPath.row]
-
+        
         let detailVC = DetailViewController()
         
         detailVC.model = selectedItem
-//        detailVC.contentTypeId = selectedItem.contenttypeid
-//        detailVC.contentId = selectedItem.contentid
-        
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
