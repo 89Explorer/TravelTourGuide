@@ -13,10 +13,11 @@ class ExploreCollectionView: UIView {
     private let placeCategoryCollectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 25
+        layout.minimumLineSpacing = 35
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -29,6 +30,7 @@ class ExploreCollectionView: UIView {
         layout.itemSize = CGSize(width: 240, height: 200)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -63,8 +65,8 @@ class ExploreCollectionView: UIView {
         let placeIntroduceCollectionViewConstraints = [
             placeIntroduceCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
             placeIntroduceCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            placeIntroduceCollectionView.topAnchor.constraint(equalTo: placeCategoryCollectionview.bottomAnchor, constant: 10),
-            placeIntroduceCollectionView.heightAnchor.constraint(equalToConstant: 240),
+            placeIntroduceCollectionView.topAnchor.constraint(equalTo: placeCategoryCollectionview.bottomAnchor, constant: 30),
+            placeIntroduceCollectionView.heightAnchor.constraint(equalToConstant: 200),
             placeIntroduceCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
                                                                   
         ]

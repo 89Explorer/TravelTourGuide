@@ -13,20 +13,36 @@ class ExploreContentView: UIView {
     private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .clear
         return view
     }()
     
     private let titleView: ExploreTitleView = {
         let view = ExploreTitleView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        return view 
+        view.backgroundColor = .clear
+        return view
     }()
     
     private let collectionView: ExploreCollectionView = {
         let view = ExploreCollectionView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
         return view
+    }()
+    
+    private let restaurantCollectionView: ExploreCollectionView = {
+        let collectionView = ExploreCollectionView()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    
+    private let accommodationCollectionView: ExploreCollectionView = {
+        let collectionView = ExploreCollectionView()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        return collectionView
     }()
     
 
@@ -38,6 +54,8 @@ class ExploreContentView: UIView {
         self.addSubview(contentView)
         contentView.addSubview(titleView)
         contentView.addSubview(collectionView)
+        contentView.addSubview(restaurantCollectionView)
+        contentView.addSubview(accommodationCollectionView)
         
         configureConstraints()
     }
@@ -57,29 +75,56 @@ class ExploreContentView: UIView {
         ]
         
         let titleViewConstraints = [
-            titleView.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 2),
-            titleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            titleView.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 2)
+            titleView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            titleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            titleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16)
         ]
         
         let collectionViewConstraints = [
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            collectionView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 30),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            collectionView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 30)
         ]
+        
+        
+        let restaurantCollectionViewConstraints = [
+            restaurantCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            restaurantCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            restaurantCollectionView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 40)
+        ]
+        
+        let accommodationCollectionViewConstraints = [
+            accommodationCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            accommodationCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            accommodationCollectionView.topAnchor.constraint(equalTo: restaurantCollectionView.bottomAnchor, constant: 40),
+            accommodationCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            
+        ]
+            
         
         NSLayoutConstraint.activate(contentViewConstraints)
         NSLayoutConstraint.activate(titleViewConstraints)
         NSLayoutConstraint.activate(collectionViewConstraints)
+        NSLayoutConstraint.activate(restaurantCollectionViewConstraints)
+        NSLayoutConstraint.activate(accommodationCollectionViewConstraints)
     }
     
     // MARK: - FUNCTIONS
+    
     func getTitleView() -> ExploreTitleView {
         return titleView
     }
     
+    
     func getCollectionView() -> ExploreCollectionView {
         return collectionView
+    }
+    
+    func getRestaurantCollectionView() -> ExploreCollectionView {
+        return restaurantCollectionView
+    }
+    
+    func getaccommodationCollectionView() -> ExploreCollectionView {
+        return accommodationCollectionView
     }
 }

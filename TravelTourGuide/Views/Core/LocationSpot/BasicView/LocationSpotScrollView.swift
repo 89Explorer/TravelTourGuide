@@ -1,13 +1,13 @@
 //
-//  ExploreBasicScrollView.swift
+//  LocationSpotScrollView.swift
 //  TravelTourGuide
 //
-//  Created by 권정근 on 9/9/24.
+//  Created by 권정근 on 9/10/24.
 //
 
 import UIKit
 
-class ExploreBasicScrollView: UIView {
+class LocationSpotScrollView: UIView {
     
     // MARK: - UI COMPONENTS
     private let basicScrollView: UIScrollView = {
@@ -16,8 +16,8 @@ class ExploreBasicScrollView: UIView {
         return scrollView
     }()
     
-    private let contentView: ExploreContentView = {
-        let view = ExploreContentView()
+    private let locationContentView: LocationSpotContentView = {
+        let view = LocationSpotContentView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -25,11 +25,10 @@ class ExploreBasicScrollView: UIView {
     // MARK: - INITIALIZERS
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(named: "newlightgray")
+        backgroundColor = .clear
         
-        self.addSubview(basicScrollView)
-        basicScrollView.addSubview(contentView)
-        
+        addSubview(basicScrollView)
+        basicScrollView.addSubview(locationContentView)
         configureConstraints()
     }
     
@@ -39,7 +38,6 @@ class ExploreBasicScrollView: UIView {
     
     // MARK: - LAYOUTS
     private func configureConstraints() {
-        
         let basicScrollViewConstraints = [
             basicScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             basicScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -47,24 +45,24 @@ class ExploreBasicScrollView: UIView {
             basicScrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         
-        let contentViewConstraints = [
-            contentView.leadingAnchor.constraint(equalTo: basicScrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: basicScrollView.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: basicScrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: basicScrollView.bottomAnchor, constant: -80),
-            contentView.widthAnchor.constraint(equalTo: basicScrollView.widthAnchor)
+        let LocationSpotContentViewConstraints = [
+            locationContentView.leadingAnchor.constraint(equalTo: basicScrollView.leadingAnchor),
+            locationContentView.trailingAnchor.constraint(equalTo: basicScrollView.trailingAnchor),
+            locationContentView.topAnchor.constraint(equalTo: basicScrollView.topAnchor),
+            locationContentView.bottomAnchor.constraint(equalTo: basicScrollView.bottomAnchor, constant: -80),
+            locationContentView.widthAnchor.constraint(equalTo: basicScrollView.widthAnchor)
         ]
         
         NSLayoutConstraint.activate(basicScrollViewConstraints)
-        NSLayoutConstraint.activate(contentViewConstraints)
+        NSLayoutConstraint.activate(LocationSpotContentViewConstraints)
     }
     
     // MARK: - FUNCTIONS
     func configureSetTitle(mainTitle: String, subTitle: String) {
-        contentView.getTitleView().configureTitle(main: mainTitle, sub: subTitle)
+        locationContentView.getlocationSpotTitleView().configureTitle(main: mainTitle, sub: subTitle)
     }
-
-    func getContentView() -> ExploreContentView {
-        return contentView
+    
+    func getlocationView() -> LocationSpotContentView {
+        return locationContentView
     }
 }

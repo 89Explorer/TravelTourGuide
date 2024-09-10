@@ -37,7 +37,8 @@ class MainTabBarViewController: UITabBarController {
     
     // MARK: - Functions
     private func setViewControllers() {
-//        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        // let homeVC = UINavigationController(rootViewController: HomeViewController())
+        // let locationVC = UINavigationController(rootViewController: LocationSpotViewController())
         let exploreVC = UINavigationController(rootViewController: ExploreViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
         let planVC = UINavigationController(rootViewController: PlanViewController())

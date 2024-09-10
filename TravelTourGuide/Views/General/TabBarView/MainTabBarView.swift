@@ -34,6 +34,7 @@ class MainTabBarView: UIView {
     // stackView에 담을 버튼들 globe.americas
     // private lazy var homeButton = createButton(imageName: "house.fill", tag: 0)
     private lazy var homeButton = createButton(imageName: "globe.americas.fill", tag: 0)
+    // private lazy var locationButton = createButton(imageName: "location.circle.fill", tag: 0)
     private lazy var searchButton = createButton(imageName: "magnifyingglass", tag: 1)
     private lazy var planButton = createButton(imageName: "calendar", tag: 2)
     private lazy var profileButton = createButton(imageName: "person.fill", tag: 3)
@@ -44,6 +45,7 @@ class MainTabBarView: UIView {
         super.init(frame: frame)
         
         addSubview(stackView)
+        //stackView.addArrangedSubview(locationButton)
         stackView.addArrangedSubview(homeButton)
         stackView.addArrangedSubview(searchButton)
         stackView.addArrangedSubview(planButton)
@@ -51,6 +53,7 @@ class MainTabBarView: UIView {
         
         // 초기 상태에서 homeButton을 선택된 상태로 설정
         selectButton(homeButton)
+        // selectButton(locationButton)
         
         configureConstraints()
     }
